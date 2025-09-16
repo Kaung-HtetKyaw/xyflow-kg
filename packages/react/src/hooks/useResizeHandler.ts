@@ -27,17 +27,17 @@ export function useResizeHandler(domNode: MutableRefObject<HTMLDivElement | null
 
     if (domNode.current) {
       updateDimensions();
-      window.addEventListener('resize', updateDimensions);
+      // window.addEventListener('resize', updateDimensions);
 
-      const resizeObserver = new ResizeObserver(() => updateDimensions());
-      resizeObserver.observe(domNode.current);
+      // const resizeObserver = new ResizeObserver(() => updateDimensions());
+      // resizeObserver.observe(domNode.current);
 
       return () => {
         window.removeEventListener('resize', updateDimensions);
 
-        if (resizeObserver && domNode.current) {
-          resizeObserver.unobserve(domNode.current);
-        }
+        // if (resizeObserver && domNode.current) {
+        //   resizeObserver.unobserve(domNode.current);
+        // }
       };
     }
   }, []);
