@@ -148,6 +148,7 @@ function ReactFlow<NodeType extends Node = Node, EdgeType extends Edge = Edge>(
     debug,
     onScroll,
     ariaLabelConfig,
+    onZoomPaneResize,
     ...rest
   }: ReactFlowProps<NodeType, EdgeType>,
   ref: ForwardedRef<HTMLDivElement>
@@ -241,6 +242,7 @@ function ReactFlow<NodeType extends Node = Node, EdgeType extends Edge = Edge>(
           onEdgeMouseEnter={onEdgeMouseEnter}
           onEdgeMouseMove={onEdgeMouseMove}
           onEdgeMouseLeave={onEdgeMouseLeave}
+          onZoomPaneResize={onZoomPaneResize}
           reconnectRadius={reconnectRadius}
           defaultMarkerColor={defaultMarkerColor}
           noDragClassName={noDragClassName}

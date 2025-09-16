@@ -4,7 +4,7 @@ import { shallow } from 'zustand/shallow';
 import { XYPanZoom, PanOnScrollMode, type Transform, type PanZoomInstance } from '@xyflow/system';
 
 import { useKeyPress } from '../../hooks/useKeyPress';
-import { useResizeHandler } from '../../hooks/useResizeHandler';
+import { OnResizeHandler, useResizeHandler } from '../../hooks/useResizeHandler';
 import { useStore, useStoreApi } from '../../hooks/useStore';
 import { containerStyle } from '../../styles/utils';
 import type { FlowRendererProps } from '../FlowRenderer';
@@ -21,6 +21,8 @@ type ZoomPaneProps = Omit<
 > & {
   isControlledViewport: boolean;
 };
+
+export type OnZoomPaneResizeHandler = OnResizeHandler;
 
 const selector = (s: ReactFlowState) => ({
   userSelectionActive: s.userSelectionActive,
@@ -49,6 +51,7 @@ export function ZoomPane({
   onViewportChange,
   isControlledViewport,
   paneClickDistance,
+  onZoomPaneResize,
 }: ZoomPaneProps) {
   const store = useStoreApi();
   const zoomPane = useRef<HTMLDivElement>(null);
@@ -56,7 +59,7 @@ export function ZoomPane({
   const zoomActivationKeyPressed = useKeyPress(zoomActivationKeyCode);
   const panZoom = useRef<PanZoomInstance>();
 
-  useResizeHandler(zoomPane);
+  useResizeHandler(zoomPane, onZoomPaneResize);
 
   const onTransformChange = useCallback(
     (transform: Transform) => {

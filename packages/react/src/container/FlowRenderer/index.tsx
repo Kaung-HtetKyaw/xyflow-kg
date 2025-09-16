@@ -71,6 +71,7 @@ function FlowRendererComponent<NodeType extends Node = Node>({
   disableKeyboardA11y,
   onViewportChange,
   isControlledViewport,
+  onZoomPaneResize,
 }: FlowRendererProps<NodeType>) {
   const { nodesSelectionActive, userSelectionActive } = useStore(selector);
   const selectionKeyPressed = useKeyPress(selectionKeyCode, { target: win });
@@ -105,6 +106,7 @@ function FlowRendererComponent<NodeType extends Node = Node>({
       onViewportChange={onViewportChange}
       isControlledViewport={isControlledViewport}
       paneClickDistance={paneClickDistance}
+      onZoomPaneResize={onZoomPaneResize}
     >
       <Pane
         onSelectionStart={onSelectionStart}

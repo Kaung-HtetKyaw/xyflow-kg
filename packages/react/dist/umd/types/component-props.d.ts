@@ -1,6 +1,7 @@
 import type { CSSProperties, HTMLAttributes, MouseEvent as ReactMouseEvent, WheelEvent } from 'react';
 import type { ConnectionMode, ConnectionLineType, OnConnect, OnConnectStart, OnConnectEnd, CoordinateExtent, KeyCode, PanOnScrollMode, ProOptions, PanelPosition, OnMove, OnMoveStart, OnMoveEnd, Viewport, NodeOrigin, HandleType, SelectionMode, OnError, ColorMode, SnapGrid, OnReconnect, AriaLabelConfig, FinalConnectionState } from '@xyflow/system';
 import type { OnSelectionChangeFunc, NodeTypes, EdgeTypes, Node, Edge, ConnectionLineComponent, OnInit, DefaultEdgeOptions, FitViewOptions, OnNodesDelete, OnEdgesDelete, OnDelete, OnNodesChange, OnEdgesChange, NodeMouseHandler, SelectionDragHandler, EdgeMouseHandler, OnNodeDrag, OnBeforeDelete, IsValidConnection } from '.';
+import { OnZoomPaneResizeHandler } from '../container/ZoomPane';
 /**
  * ReactFlow component props.
  * @public
@@ -200,6 +201,8 @@ export interface ReactFlowProps<NodeType extends Node = Node, EdgeType extends E
     onPaneMouseMove?: (event: ReactMouseEvent) => void;
     /** This event handler gets called when mouse leaves the pane. */
     onPaneMouseLeave?: (event: ReactMouseEvent) => void;
+    /** This even handler gets called when zoom pane is resized */
+    onZoomPaneResize?: OnZoomPaneResizeHandler;
     /**
      * Distance that the mouse can move between mousedown/up that will trigger a click.
      * @default 0

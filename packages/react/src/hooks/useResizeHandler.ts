@@ -3,12 +3,14 @@ import { errorMessages, getDimensions } from '@xyflow/system';
 
 import { useStoreApi } from '../hooks/useStore';
 
+export type OnResizeHandler = (update: () => void) => void;
+
 /**
  * Hook for handling resize events.
  *
  * @internal
  */
-export function useResizeHandler(domNode: MutableRefObject<HTMLDivElement | null>): void {
+export function useResizeHandler(domNode: MutableRefObject<HTMLDivElement | null>, onResize?: OnResizeHandler): void {
   const store = useStoreApi();
 
   useEffect(() => {
@@ -27,10 +29,12 @@ export function useResizeHandler(domNode: MutableRefObject<HTMLDivElement | null
 
     if (domNode.current) {
       updateDimensions();
-      // window.addEventListener('resize', updateDimensions);
+      window.addEventListener('resize', updateDimensions);
 
       const resizeObserver = new ResizeObserver(() => {
-        console.log('Resized Zoom Pane');
+        if (onResize) {
+          onResize(updateDimensions);
+        }
       });
       resizeObserver.observe(domNode.current);
 

@@ -47,6 +47,7 @@ import type {
   OnBeforeDelete,
   IsValidConnection,
 } from '.';
+import { OnZoomPaneResizeHandler } from '../container/ZoomPane';
 
 /**
  * ReactFlow component props.
@@ -253,6 +254,8 @@ export interface ReactFlowProps<NodeType extends Node = Node, EdgeType extends E
   onPaneMouseMove?: (event: ReactMouseEvent) => void;
   /** This event handler gets called when mouse leaves the pane. */
   onPaneMouseLeave?: (event: ReactMouseEvent) => void;
+  /** This even handler gets called when zoom pane is resized */
+  onZoomPaneResize?: OnZoomPaneResizeHandler;
   /**
    * Distance that the mouse can move between mousedown/up that will trigger a click.
    * @default 0
