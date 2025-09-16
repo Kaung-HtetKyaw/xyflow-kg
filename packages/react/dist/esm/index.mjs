@@ -1256,13 +1256,15 @@ function useResizeHandler(domNode) {
         if (domNode.current) {
             updateDimensions();
             // window.addEventListener('resize', updateDimensions);
-            // const resizeObserver = new ResizeObserver(() => updateDimensions());
-            // resizeObserver.observe(domNode.current);
+            const resizeObserver = new ResizeObserver(() => {
+                console.log('Resized Zoom Pane');
+            });
+            resizeObserver.observe(domNode.current);
             return () => {
                 window.removeEventListener('resize', updateDimensions);
-                // if (resizeObserver && domNode.current) {
-                //   resizeObserver.unobserve(domNode.current);
-                // }
+                if (resizeObserver && domNode.current) {
+                    resizeObserver.unobserve(domNode.current);
+                }
             };
         }
     }, []);
